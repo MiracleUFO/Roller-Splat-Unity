@@ -9,9 +9,13 @@ public class GameManager : MonoBehaviour
 
     private GroundPiece[] allGroundPieces;
 
+    private GameObject gameOverText;
+
     private void Start()
     {
         SetupNewLevel();
+        gameOverText = GameObject.Find("GameOver");
+        gameOverText.SetActive(false);
     }
 
     private void SetupNewLevel()
@@ -58,7 +62,11 @@ public class GameManager : MonoBehaviour
 
     private void NextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if (SceneManager.GetActiveScene().buildIndex != 3) {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        } else {
+            gameOverText.SetActive(true);
+        }
     }
 
 }
