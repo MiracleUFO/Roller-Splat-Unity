@@ -32,7 +32,7 @@ public class BallController : MonoBehaviour
     private void FixedUpdate()
     {
         if (!gameOverText.activeSelf) {
-            // Set the balls speed when it should travel
+                // Set the balls speed when it should travel
             if (isTraveling) {
                 rb.velocity = travelDirection * speed;
             }
@@ -105,7 +105,7 @@ public class BallController : MonoBehaviour
                 swipePosLastFrame = Vector2.zero;
                 currentSwipe = Vector2.zero;
             }
-        }
+            }
     }
 
     private void SetDestination(Vector3 direction)

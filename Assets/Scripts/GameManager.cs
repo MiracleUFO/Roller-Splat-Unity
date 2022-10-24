@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
 
     private GameObject gameOverText;
 
+    public GameObject explosionFx;
+
+
     private void Start()
     {
         SetupNewLevel();
@@ -56,17 +59,24 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (isFinished)
-            NextLevel();
+        if (isFinished) {
+            Instantiate(explosionFx, explosionFx.transform.position, explosionFx.transform.rotation);
+            StartCoroutine(NextLevel());
+        }
     }
 
-    private void NextLevel()
+    // While game is active spawn a random target
+
+    IEnumerator NextLevel()
     {
+        yield return new WaitForSeconds(5);
+
         if (SceneManager.GetActiveScene().buildIndex != 3) {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         } else {
             gameOverText.SetActive(true);
         }
+        Destroy(GameObject.Find("Fireworks - Rocket - Blue Rain 2(Clone)"));
     }
 
 }
